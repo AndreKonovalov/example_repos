@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 
 Rectangle {
-//    visible: false
+    visible: false
     anchors.fill: parent
     color: "black"
 

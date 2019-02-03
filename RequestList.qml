@@ -60,6 +60,9 @@ Rectangle {
         border.width: 2
 
         ListView {
+            id: oListView
+            objectName: "table-view"
+
             property int itemsPerHeader: 1
             property int itemHeight: oListView.height/(oListController.iItemsPerPage + itemsPerHeader)
             property CListController controller: oListController
@@ -67,8 +70,6 @@ Rectangle {
             onCurrentIndexChanged:
                 if (controller) controller.vSetCurrentItem(currentIndex)
 
-            id: oListView
-            objectName: "table-view"
             anchors.fill: parent
             anchors.margins: 2
             focus: true
@@ -79,14 +80,12 @@ Rectangle {
                 width: oListView.width
                 height: oListView.itemHeight
             }
-//            delegate: oListDelegatePart1
             Connections {
-                target: controller
+                target: oListView.controller
                 onICurrentItemChanged: oListView.currentIndex = controller.iCurrentItem
             }
         }
     }
-
 
     Button {
         id: oSignIn

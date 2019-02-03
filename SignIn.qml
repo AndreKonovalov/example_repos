@@ -18,13 +18,13 @@ Rectangle {
     onVisibleChanged: if(visible) { clear(); o1.forceActiveFocus(); }
 
     Rectangle {
-        y: 100
+        y: 10
         width: 50
         height: 50
         anchors.horizontalCenter: parent.horizontalCenter
         color: "transparent"
-//        border.color: "green"
-//        border.width: 2
+        border.color: "green"
+        border.width: 2
         Image {
             anchors.fill: parent
 //            y: 100
@@ -35,10 +35,6 @@ Rectangle {
             smooth: true
             fillMode: Image.PreserveAspectFit
         }
-    }
-
-    TextInput {
-        id: oo
     }
 
     InputBox {
@@ -62,6 +58,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         y: 400
         width: 200
+        height: background.height
         text: "Sign in"
         contentItem: Text {
             text: oSignIn.text
@@ -81,7 +78,7 @@ Rectangle {
 //            border.width: 1
             radius: 5
         }
-        onClicked: exit()
+        onClicked: { console.log('clopg'); exit(); }
     }
 
 }

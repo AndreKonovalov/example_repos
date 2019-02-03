@@ -11,5 +11,7 @@
         <file>RequestListDescription.qml</file>
         <file>SignIn.qml</file>
         <file>Common.js</file>
+        <file>InputBox.qml</file>
+        <file>Pencil2.png</file>
     </qresource>
 </RCC>
