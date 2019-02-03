@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Form1.qml</file>
+        <file>CommonCell.qml</file>
+        <file>CommonListRowDelegate.qml</file>
+        <file>AppName.qml</file>
+        <file>RequestEdit.qml</file>
+        <file>RequestList.qml</file>
+        <file>RequestListRowDelegate.qml</file>
+        <file>RequestListDescription.qml</file>
+        <file>SignIn.qml</file>
+        <file>Common.js</file>
+    </qresource>
+</RCC>
