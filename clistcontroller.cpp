@@ -1,9 +1,4 @@
 #include "clistcontroller.h"
-#include "../core/Utils/cqmltype.h"
-
-using namespace Mutronic;
-
-static CQmlType<CListController> oTypeDefinition("CListController");
 
 CListController::CListController(QObject *parent) :
     QObject(parent),

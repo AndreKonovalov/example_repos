@@ -3,8 +3,6 @@
 
 #include <QObject>
 
-namespace Mutronic {
-
 class CListController : public QObject
 {
     Q_OBJECT
@@ -54,7 +52,5 @@ private:
     void setPrevEnabled(bool enabled);
     void setNextEnabled(bool enabled);
 };
-
-}
 
 #endif // CLISTCONTROLLER_H

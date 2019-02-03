@@ -6,4 +6,9 @@ Window {
     width: 640
     height: 480
     title: qsTr("Example")
+    
+    Form1 {
+        anchors.fill: parent
+
+    }
 }
