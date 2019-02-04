@@ -4,7 +4,7 @@ import "Common.js" as Common
 Rectangle {
     id: oItem
     clip: true
-    color: "blue"
+    color: "transparent"
 //    color: Common.premiumTableStyle.row.even.background
     height: row.height
 
@@ -39,10 +39,8 @@ Rectangle {
         
         Repeater {
             id: listView
-            delegate: CommonCell {  // model.width - row.spacing
+            delegate: CommonCell {
                 width: model.width
-                onWidthChanged: console.log('width new ' + model.width + ' ' + width + ' ' + height)
-//                onHeightChanged: console.log('height ' + width + ' ' + height)
                 text: oItem.oObject[model.role]
                 horizontalAlignment: model.align? model.align: Text.AlignLeft
                 color: oItem.textColor
@@ -67,6 +65,10 @@ Rectangle {
     states: State {
         name: "Current"
         when: oItem.ListView.isCurrentItem
-        PropertyChanges { target: oItem; color: Common.premiumTableStyle.row.current.background }
+        PropertyChanges {
+            target: oItem;
+            color: Common.premiumTableStyle.row.current.background
+            textColor: "white"
+        }
     }
 }

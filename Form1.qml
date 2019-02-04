@@ -17,10 +17,10 @@ Item {
         id: oSignIn
         onExit: { console.log('si: ' + o1text + ' ' + o3text); oView.state = "appsView"; }
     }
-//    SignUp {
-//        id: oSignUp
-//        onExit: oView.state = "appsView"
-//    }
+    SignUp {
+        id: oSignUp
+        onExit: oView.state = "appsView"
+    }
     RequestList {
         id: oList
         onExit: oView.state = "appsView"
@@ -43,10 +43,10 @@ Item {
             name: "signInView"
             PropertyChanges { target: oSignIn; visible: true }
         },
-//        State {
-//            name: "signUpView"
-//            PropertyChanges { target: oSignUp; visible: true }
-//        },
+        State {
+            name: "signUpView"
+            PropertyChanges { target: oSignUp; visible: true }
+        },
         State {
             name: "showProjects"
             PropertyChanges { target: oList; visible: true }

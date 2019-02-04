@@ -5,7 +5,7 @@ import com.abc.qmlcomponents 1.0
 Rectangle {
     visible: false
     anchors.fill: parent
-    color: "black"
+    color: "#eff3f7"
 
     signal exit
 
@@ -21,55 +21,99 @@ Rectangle {
 //        visible = true;
     }
 
-    InputBox {
-        id: oEmail
-        y: 50
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: oEditModel.email
-        onTextChanged: oEditModel.email = text
-        dummyText: "E-MAIL"
-        nextInFocus: oName
-        validator: RegExpValidator { regExp: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/ }
+    Rectangle {
+        id: oHeader
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.margins: 1
+        height: 40
+        color: "#5941b3"
+        Text {
+            anchors.verticalCenter: parent.verticalCenter
+            x: 150
+
+            color: "white"
+            text: qsTr("Support")
+        }
+        ToolButton {
+            icon.source: "left.png"
+            x: 30
+            y: 10
+            height: 20
+            width: 20
+            onClicked: exit()
+        }
+
     }
-    InputBox {
-        id: oName
-        y: 150
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: oEditModel.name
-        onTextChanged: oEditModel.name = text
-        dummyText: ""
-        nextInFocus: oSubject
+    Rectangle {
+        anchors.top: oHeader.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.margins: 10
+        color: "white"
+        height: 300
+
+        InputBox {
+            id: oEmail
+            y: 50
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.margins: 15
+            text: oEditModel.email
+            onTextChanged: oEditModel.email = text
+            dummyText: "E-MAIL"
+            nextInFocus: oName
+            validator: RegExpValidator { regExp: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/ }
+        }
+        InputBox {
+            id: oName
+            y: 110
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.margins: 15
+            text: oEditModel.name
+            onTextChanged: oEditModel.name = text
+            dummyText: "NAME"
+            nextInFocus: oSubject
+        }
+        InputBox {
+            id: oSubject
+            y: 170
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.margins: 15
+            text: oEditModel.subject
+            onTextChanged: oEditModel.subject = text
+            dummyText: "SUBJECT"
+            nextInFocus: oText
+        }
+        InputBox {
+            id: oText
+            y: 230
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.margins: 15
+            text: oEditModel.text
+            onTextChanged: oEditModel.text = text
+            dummyText: "TEXT"
+            nextInFocus: oEmail
+        }
     }
-    InputBox {
-        id: oSubject
-        y: 250
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: oEditModel.subject
-        onTextChanged: oEditModel.subject = text
-        dummyText: ""
-        nextInFocus: oText
-    }
-    InputBox {
-        id: oText
-        y: 350
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: oEditModel.text
-        onTextChanged: oEditModel.text = text
-        dummyText: ""
-        nextInFocus: oEmail
-    }
+
 
     Button {
         id: oSignIn
-        anchors.horizontalCenter: parent.horizontalCenter
-        y: 400
-        width: 200
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: 10
         text: "Send"
         contentItem: Text {
             text: oSignIn.text
             font: oSignIn.font
             opacity: enabled ? 1.0 : 0.3
-            color: oSignIn.down ? "#000000" : "#000000"
+            color: oSignIn.down ? "white" : "white"
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
@@ -78,37 +122,9 @@ Rectangle {
         background: Rectangle {
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
-            color: oSignIn.down ? "#ece7d3" : "#ffbe1c"
-//            border.color: oSignIn.down ? "#17a81a" : "#5904b1"
-//            border.width: 1
-            radius: 5
+            color: oSignIn.down ? "#292193" : "#5941b3"
+            radius: 2
         }
         onClicked: { if(oEditModel.commit()) exit(); }
-    }
-    Button {
-        id: oCancel
-        anchors.horizontalCenter: parent.horizontalCenter
-        y: 460
-        width: 200
-        text: "Cancel"
-        contentItem: Text {
-            text: oCancel.text
-            font: oCancel.font
-            opacity: enabled ? 1.0 : 0.3
-            color: oCancel.down ? "#000000" : "#000000"
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            elide: Text.ElideRight
-        }
-
-        background: Rectangle {
-            implicitHeight: 40
-            opacity: enabled ? 1 : 0.3
-            color: oCancel.down ? "#ece7d3" : "#ffbe1c"
-//            border.color: oSignIn.down ? "#17a81a" : "#5904b1"
-//            border.width: 1
-            radius: 5
-        }
-        onClicked: exit()
     }
 }

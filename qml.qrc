@@ -13,5 +13,12 @@
         <file>Common.js</file>
         <file>InputBox.qml</file>
         <file>Pencil2.png</file>
+        <file>left.png</file>
+        <file>CommonListHeaderDelegate.qml</file>
+        <file>HeaderLine.qml</file>
+        <file>TableViewComponent.qml</file>
+        <file>RequestListHeader.qml</file>
+        <file>ListHeaderItem.qml</file>
+        <file>SignUp.qml</file>
     </qresource>
 </RCC>

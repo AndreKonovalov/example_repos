@@ -49,15 +49,6 @@ bool CRequestListModel::readFromFile() {
         file.close();
     }
 
-//    CRequest* ptr = new CRequest();
-//    ptr->setnumber("1");
-//    QSharedPointer<CRequest> qptr(ptr);
-//    m_collection.push_back(qptr);
-//    ptr = new CRequest();
-//    ptr->setnumber("2");
-//    qptr = QSharedPointer<CRequest>(ptr);
-//    m_collection.push_back(qptr);
-
     return true;
 }
 

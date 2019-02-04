@@ -5,7 +5,7 @@ Window {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Example")
+//    title: qsTr("Example")
     
     Form1 {
         anchors.fill: parent

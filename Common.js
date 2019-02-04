@@ -80,13 +80,15 @@ premiumTableStyle.row.selected = {}
 premiumTableStyle.row.selected.background="#bcbcbc"
 premiumTableStyle.row.selected.text = "white"
 premiumTableStyle.row.current = {}
-premiumTableStyle.row.current.background="#f39100"
+premiumTableStyle.row.current.background="#0000ac"
+//premiumTableStyle.row.current.background="#f39100"
 premiumTableStyle.row.current.text = "white"
 premiumTableStyle.row.odd = {}
 premiumTableStyle.row.odd.background="transparent"
 premiumTableStyle.row.even = {}
 premiumTableStyle.row.even.background="transparent"
-premiumTableStyle.row.text="white"
+//premiumTableStyle.row.text="white"
+premiumTableStyle.row.text="black"
 
 var warningsList = {}
 warningsList.columnWidth =

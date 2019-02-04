@@ -22,7 +22,7 @@ Rectangle {
         y: 20
 
         color: "#ffbe1c"
-        text: qsTr("Sign in")
+        text: qsTr("Sign up")
         font.pixelSize: 14
     }
     ToolButton {
@@ -40,35 +40,59 @@ Rectangle {
         height: 2
         color: "darkgrey"
     }
-    Rectangle {
-        y: 110
-        width: 50
-        height: 50
-        anchors.horizontalCenter: parent.horizontalCenter
-        color: "transparent"
-        Image {
-            anchors.fill: parent
-            source: "Pencil2.png"
-            smooth: true
-            fillMode: Image.PreserveAspectFit
-        }
-    }
+//    Rectangle {
+//        y: 10
+//        width: 50
+//        height: 50
+//        anchors.horizontalCenter: parent.horizontalCenter
+//        color: "transparent"
+//        Image {
+//            anchors.fill: parent
+//            source: "Pencil2.png"
+//            smooth: true
+//            fillMode: Image.PreserveAspectFit
+//        }
+//    }
 
     InputBox {
         id: o1
-        y: 200
+        y: 80
         anchors.horizontalCenter: parent.horizontalCenter
         textColor: "white"
         dummyText: "E-MAIL"
-        nextInFocus: o3
+        nextInFocus: o2
         validator: RegExpValidator { regExp: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/ }
     }
     InputBox {
+        id: o2
+        y: 140
+        anchors.horizontalCenter: parent.horizontalCenter
+        textColor: "white"
+        dummyText: "FIRSTNAME"
+        nextInFocus: o3
+    }
+    InputBox {
         id: o3
-        y: 300
+        y: 200
+        anchors.horizontalCenter: parent.horizontalCenter
+        textColor: "white"
+        dummyText: "LASTNAME"
+        nextInFocus: o4
+    }
+    InputBox {
+        id: o4
+        y: 260
         anchors.horizontalCenter: parent.horizontalCenter
         textColor: "white"
         dummyText: "PASSWORD"
+        nextInFocus: o1
+    }
+    InputBox {
+        id: o5
+        y: 320
+        anchors.horizontalCenter: parent.horizontalCenter
+        textColor: "white"
+        dummyText: "RE-ENTER PASSWORD"
         nextInFocus: o1
     }
 
@@ -79,7 +103,7 @@ Rectangle {
         anchors.bottomMargin: 30
         width: 200
         height: background.height
-        text: "Sign in"
+        text: "Register"
         contentItem: Text {
             text: oSignIn.text
             font: oSignIn.font
@@ -94,8 +118,6 @@ Rectangle {
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
             color: oSignIn.down ? "#ece7d3" : "#ffbe1c"
-//            border.color: oSignIn.down ? "#17a81a" : "#5904b1"
-//            border.width: 1
             radius: 5
         }
         onClicked: { exit(); }

@@ -5,7 +5,7 @@ Text {
     height: parent.height
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignLeft
-    color: "white"
+    color: "black"
     font.pixelSize: 18
     textFormat: Text.PlainText
     wrapMode: Text.WordWrap

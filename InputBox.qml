@@ -1,6 +1,7 @@
 import QtQuick 2.12
 
 FocusScope {
+    property alias textColor: oInput.color
     property alias text: oInput.text
     property alias validator: oInput.validator
     property alias dummyText: oDummy.text
@@ -10,13 +11,13 @@ FocusScope {
 
     Rectangle {
         anchors.fill: parent
-        color: "blue"
+        color: "transparent"
         property int textSize: 16
         TextInput {
             id: oInput
             clip: true
             focus: true
-            color: "yellow"
+            color: "black"
             font.pixelSize: parent.textSize
             anchors.verticalCenter: parent.verticalCenter
             KeyNavigation.tab: nextInFocus
@@ -39,7 +40,7 @@ FocusScope {
             anchors.bottom: parent.bottom
             width: parent.width
             height: 2
-            color: "white"
+            color: "#5941b3"
         }
     }
 
