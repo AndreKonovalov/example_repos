@@ -33,42 +33,14 @@ Item {
         clip: true
         boundsBehavior: Flickable.StopAtBounds
         onCurrentIndexChanged: {
-            scrollbarAnimation.start()
             if (controller) controller.vSetCurrentItem(currentIndex)
         }
         highlightMoveDuration: 1
-//        highlightMoveSpeed: -1
-        ScrollBar.vertical: oScrollBar
+
+        ScrollBar.vertical: ScrollBar { id: vbar; active: true }
     }
     Connections {
         target: controller
         onICurrentItemChanged: oListViewInternal.currentIndex = controller.iCurrentItem
-    }
-    ScrollBar {
-        id: oScrollBar
-        anchors {
-            top: oHeader.bottom
-            right: parent.right
-            bottom: parent.bottom
-        }
-        size: 1
-        minimumSize: 1
-        width: 10
-//        trackMinHeight: 20
-//        trackColor: "white"
-        interactive: false
-        property bool moving: oListViewInternal.moving || scrollbarAnimation.running
-        opacity: oScrollBar.moving? 1.0: 0.0
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 500
-                easing.type: Easing.InOutQuad
-            }
-        }
-        SequentialAnimation {
-            id: scrollbarAnimation
-            running: true
-            PauseAnimation { duration: 1000 }
-        }
     }
 }

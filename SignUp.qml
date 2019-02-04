@@ -40,19 +40,6 @@ Rectangle {
         height: 2
         color: "darkgrey"
     }
-//    Rectangle {
-//        y: 10
-//        width: 50
-//        height: 50
-//        anchors.horizontalCenter: parent.horizontalCenter
-//        color: "transparent"
-//        Image {
-//            anchors.fill: parent
-//            source: "Pencil2.png"
-//            smooth: true
-//            fillMode: Image.PreserveAspectFit
-//        }
-//    }
 
     InputBox {
         id: o1

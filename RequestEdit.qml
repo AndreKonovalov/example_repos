@@ -35,6 +35,7 @@ Rectangle {
 
             color: "white"
             text: qsTr("Support")
+            font.pixelSize: 14
         }
         ToolButton {
             icon.source: "left.png"

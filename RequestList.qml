@@ -59,42 +59,21 @@ Rectangle {
             }
         }
     }
-
-    Button {
-        id: oSignIn
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        text: "Cancel"
-        contentItem: Text {
-            text: oSignIn.text
-            font: oSignIn.font
-            opacity: enabled ? 1.0 : 0.3
-            color: "white"
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            elide: Text.ElideRight
-        }
-
-        background: Rectangle {
-            implicitHeight: 40
-            opacity: enabled ? 1 : 0.3
-            color: oSignIn.down ? "#292193" : "#5941b3"
-//            border.color: oSignIn.down ? "#17a81a" : "#5904b1"
-//            border.width: 1
-            radius: 2
-        }
+    ToolButton {
+        x: 8
+        y: 11
+        icon.source: "left.png"
+        height: 16
+        width: 16
         onClicked: exit()
     }
+
     Button {
         id: oEdit
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.bottom: oSignIn.top
+        anchors.bottom: parent.bottom
         anchors.bottomMargin: 2
-//        anchors.horizontalCenter: parent.horizontalCenter
-//        anchors.top: oSignIn.bottom
-//        width: 200
         text: "Add request"
         contentItem: Text {
             text: oEdit.text
@@ -110,9 +89,6 @@ Rectangle {
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
             color: oEdit.down ? "#292193" : "#5941b3"
-//            color: oEdit.down ? "#ece7d3" : "#ffbe1c"
-//            border.color: oSignIn.down ? "#17a81a" : "#5904b1"
-//            border.width: 1
             radius: 2
         }
         onClicked: add(oModel)
