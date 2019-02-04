@@ -10,6 +10,7 @@ public:
     explicit CRequestEditModel(QObject *parent = nullptr);
 
 signals:
+    void showErrors(const QStringList &errors);
 
 public slots:
     void vAssignFrom(CRequestListModel* model);

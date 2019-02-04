@@ -3,6 +3,7 @@ import QtQuick.Controls 2.12
 import com.abc.qmlcomponents 1.0
 
 Rectangle {
+    id: oForm
     visible: false
     anchors.fill: parent
     color: "#eff3f7"
@@ -11,6 +12,10 @@ Rectangle {
 
     CRequestEditModel {
         id: oEditModel
+        onShowErrors: {
+            errorsMessageBox.message = errors.join("\n");
+            errorsMessageBox.vShow(oForm);
+        }
     }
 
     function show(listModel, create) {
@@ -18,7 +23,6 @@ Rectangle {
             oEditModel.vClear(listModel);
         else
             oEditModel.vAssignFrom(listModel);
-//        visible = true;
     }
 
     Rectangle {
@@ -104,17 +108,17 @@ Rectangle {
 
 
     Button {
-        id: oSignIn
+        id: oSend
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.margins: 10
         text: "Send"
         contentItem: Text {
-            text: oSignIn.text
-            font: oSignIn.font
+            text: oSend.text
+            font: oSend.font
             opacity: enabled ? 1.0 : 0.3
-            color: oSignIn.down ? "white" : "white"
+            color: oSend.down ? "white" : "white"
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
@@ -123,9 +127,14 @@ Rectangle {
         background: Rectangle {
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
-            color: oSignIn.down ? "#292193" : "#5941b3"
+            color: oSend.down ? "#292193" : "#5941b3"
             radius: 2
         }
-        onClicked: { if(oEditModel.commit()) exit(); }
+        onClicked: if(oEditModel.commit()) exit();
+    }
+
+    MessageBox {
+        id: errorsMessageBox
+        title: "Error"
     }
 }

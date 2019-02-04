@@ -20,5 +20,8 @@
         <file>RequestListHeader.qml</file>
         <file>ListHeaderItem.qml</file>
         <file>SignUp.qml</file>
+        <file>PopupBase.qml</file>
+        <file>MessageBox.qml</file>
+        <file>GroupBoxWithToolBar.qml</file>
     </qresource>
 </RCC>

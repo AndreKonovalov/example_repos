@@ -94,8 +94,6 @@ Rectangle {
             implicitHeight: 40
             opacity: enabled ? 1 : 0.3
             color: oSignIn.down ? "#ece7d3" : "#ffbe1c"
-//            border.color: oSignIn.down ? "#17a81a" : "#5904b1"
-//            border.width: 1
             radius: 5
         }
         onClicked: { exit(); }

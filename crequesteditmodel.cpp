@@ -20,13 +20,20 @@ void CRequestEditModel::vClear(CRequestListModel* model) {
 }
 
 bool CRequestEditModel::commit() {
+    QStringList errors;
     qDebug() << "commit" << m_email << m_name << m_subject << m_text;
     if(m_email.isEmpty())
-        return false;
+        errors << tr("Email must be set.");
     if(m_name.isEmpty())
-        return false;
+        errors << tr("Name must be set.");
     if(m_subject.isEmpty())
+        errors << tr("Subject must be set.");
+    if (!errors.empty())
+    {
+        emit showErrors(errors);
         return false;
+    }
+
     QSharedPointer<CRequest> ptr = m_poRequest;
     if(!ptr) {
         CRequest* a = new CRequest();
