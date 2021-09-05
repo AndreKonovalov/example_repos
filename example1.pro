@@ -18,14 +18,18 @@ SOURCES += \
     crecordlistmodel.cpp \
     crequest.cpp \
     crequesteditmodel.cpp \
-    crequestlistmodel.cpp
+    crequestlistmodel.cpp \
+    cregistrationmodel.cpp \
+    cuserdata.cpp
 
 HEADERS += \
     clistcontroller.h \
     crecordlistmodel.h \
     crequest.h \
     crequesteditmodel.h \
-    crequestlistmodel.h
+    crequestlistmodel.h \
+    cregistrationmodel.h \
+    cuserdata.h
 
 RESOURCES += qml.qrc
 

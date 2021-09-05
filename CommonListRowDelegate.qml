@@ -5,7 +5,6 @@ Rectangle {
     id: oItem
     clip: true
     color: "transparent"
-//    color: Common.premiumTableStyle.row.even.background
     height: row.height
 
     property variant oRowData: model

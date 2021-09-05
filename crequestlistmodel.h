@@ -14,11 +14,10 @@ public:
     int iCurrentIndex() const { return m_iCurrentIndex; }
     bool boIsEditActive() const { return boIsIndexValid(); }
     CRequest::Ptr getCurrentItem();
-    void setCurrent(CRequest::Ptr duese);
+    void setCurrent(CRequest::Ptr req);
 
     virtual int count() const { return m_collection.count(); }
     void setCollection(const QVector<CRequest::Ptr> &collection);
-    void sort();
     void add(CRequest::Ptr item);
     void remove(CRequest::Ptr item);
     void insert(int iBeforeRow, CRequest::Ptr item);
@@ -39,9 +38,6 @@ private:
     void vCalcIndexValid();
 
     QVector<CRequest::Ptr> m_collection;
-//    QVector<CRequest*> m_records;
-    void createRecord(CRequest::Ptr object);
-    void deleteRecord(CRequest::Ptr object);
     bool readFromFile();
     bool writeToFile();
 };

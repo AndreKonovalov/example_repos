@@ -1,19 +1,19 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import com.abc.qmlcomponents 1.0
 
 Rectangle {
+    id: oForm
     visible: false
     anchors.fill: parent
     color: "black"
 
     signal exit
 
-    property alias o1text: o1.text
-    property alias o3text: o3.text
-
     function clear() {
-        o1text = "";
-        o3text = "";
+        oEditModel.clear()
+//        o1text = "";
+//        o3text = "";
     }
     onVisibleChanged: if(visible) { clear(); o1.forceActiveFocus(); }
 
@@ -59,6 +59,8 @@ Rectangle {
         y: 200
         anchors.horizontalCenter: parent.horizontalCenter
         textColor: "white"
+        text: oEditModel.email
+        onTextChanged: oEditModel.email = text
         dummyText: "E-MAIL"
         nextInFocus: o3
         validator: RegExpValidator { regExp: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/ }
@@ -68,6 +70,8 @@ Rectangle {
         y: 300
         anchors.horizontalCenter: parent.horizontalCenter
         textColor: "white"
+        text: oEditModel.password
+        onTextChanged: oEditModel.password = text
         dummyText: "PASSWORD"
         nextInFocus: o1
     }
@@ -96,7 +100,19 @@ Rectangle {
             color: oSignIn.down ? "#ece7d3" : "#ffbe1c"
             radius: 5
         }
-        onClicked: { exit(); }
+        onClicked: { if(oEditModel.checkPassword()) exit(); }
     }
 
+    CUserData {
+        id: oEditModel
+        onShowErrors: {
+            errorsMessageBox.message = errors.join("\n");
+            errorsMessageBox.vShow(oForm);
+        }
+    }
+
+    MessageBox {
+        id: errorsMessageBox
+        title: "Error"
+    }
 }

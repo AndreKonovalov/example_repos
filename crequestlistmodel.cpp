@@ -3,8 +3,6 @@
 #include <QFile>
 #include <QDebug>
 
-//STATIC(qmlRegisterType<CRequestListModel>("com.abc.qmlcomponents", 1, 0, "CRequestListModel"))
-
 CRequestListModel::CRequestListModel(QObject *parent)
     : CRecordListModel(parent), m_boIndexValid(), m_iCurrentIndex(-1)
 {
@@ -15,21 +13,21 @@ CRequestListModel::~CRequestListModel() {
     writeToFile();
 }
 
+static QString requestFile = "D:\\request.txt";
+
 #define NUM_FIELDS  4
 bool CRequestListModel::readFromFile() {
     qDebug() << "readFromFile";
-    QFile file("D:\\0Mutronic\\a12.txt");
+    QFile file(requestFile);
     if (file.open(QFile::ReadOnly | QFile::Text)) {
         QTextStream stream(&file);
         QString str, buf[NUM_FIELDS];
         int iRec = 1;
         int iField = 0;
-        qDebug() << "begin" << iRec << iField;
         while(1) {
             if(stream.atEnd())
                 break;
             str = stream.readLine();
-            qDebug() << "str" << iRec << iField << str;
             if(str == "#") {
                 CRequest* ptr = new CRequest();
                 ptr->setnumber(QString::number(iRec));
@@ -54,17 +52,12 @@ bool CRequestListModel::readFromFile() {
 
 bool CRequestListModel::writeToFile() {
     qDebug() << "writeToFile";
-    QFile file("D:\\0Mutronic\\b12.txt");
-//    QFile file("a12.txt");
-    if (!file.open(QFile::WriteOnly | QFile::Text)) {
-        qDebug() << "false" << m_collection.count();
+    QFile file(requestFile);
+    if (!file.open(QFile::WriteOnly | QFile::Text))
         return  false;
-    }
-    qDebug() << "write" << m_collection.count();
     QTextStream stream(&file);
     QString str, buf[NUM_FIELDS];
     foreach(auto ptr, m_collection) {
-        qDebug() << "ptr" << ptr->email() << ptr->name() << ptr->subject() << ptr->text();
         stream << ptr->email() << "\n";
         stream << ptr->name() << "\n";
         stream << ptr->subject() << "\n";
@@ -76,10 +69,10 @@ bool CRequestListModel::writeToFile() {
     return true;
 }
 
-void CRequestListModel::setCurrent(CRequest::Ptr duese)
+void CRequestListModel::setCurrent(CRequest::Ptr req)
 {
-    if (duese)
-        vSetCurrentIndex(getCollection().indexOf(duese));
+    if (req)
+        vSetCurrentIndex(getCollection().indexOf(req));
 }
 
 void CRequestListModel::vSetCurrentIndex(int currentIndex)
@@ -110,49 +103,17 @@ QSharedPointer<CRequest> CRequestListModel::getCurrentItem()
 void CRequestListModel::setCollection(const QVector<CRequest::Ptr> &collection)
 {
     beginResetModel();
-    foreach (auto oldObject, m_collection)
-    {
-        if (!collection.contains(oldObject))
-            deleteRecord(oldObject);
-    }
     m_collection = collection;
-//    qSort(m_collection);
     endResetModel();
     emit countChanged();
 }
 
-void CRequestListModel::sort()
-{
-    emit layoutAboutToBeChanged();
-//    qSort(m_collection);
-    emit layoutChanged();
-}
-
-
 QObject *CRequestListModel::getRecord(int row) const
 {
-    CRequest* object = m_collection[row].data();
-    qDebug() << "getRecord" << object->name() << object->number();
-    return object;
-}
-
-void CRequestListModel::createRecord(CRequest::Ptr object)
-{
-//    auto record = new CRequest(this);
-//    m_records[object] = record;
-}
-
-void CRequestListModel::deleteRecord(CRequest::Ptr object)
-{
-//    if (!m_records.contains(object))
-//        return;
-
-//    delete m_records[object];
-//    m_records.remove(object);
+    return  m_collection[row].data();
 }
 
 void CRequestListModel::add(CRequest::Ptr item) {
-//    beginInsertRows(QModelIndex(), 0, 0);
     beginResetModel();
     m_collection.push_back(item);
     endResetModel();
@@ -169,7 +130,6 @@ void CRequestListModel::remove(CRequest::Ptr item)
         return;
     beginRemoveRows(QModelIndex(), iIndex, iIndex);
     m_collection.remove(iIndex);
-//    deleteRecord(item);
     endRemoveRows();
     emit countChanged();
 }

@@ -1,19 +1,17 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import com.abc.qmlcomponents 1.0
 
 Rectangle {
+    id: oForm
     visible: false
     anchors.fill: parent
     color: "black"
 
     signal exit
 
-    property alias o1text: o1.text
-    property alias o3text: o3.text
-
     function clear() {
-        o1text = "";
-        o3text = "";
+        oEditModel.clear()
     }
     onVisibleChanged: if(visible) { clear(); o1.forceActiveFocus(); }
 
@@ -46,6 +44,8 @@ Rectangle {
         y: 80
         anchors.horizontalCenter: parent.horizontalCenter
         textColor: "white"
+        text: oEditModel.email
+        onTextChanged: oEditModel.email = text
         dummyText: "E-MAIL"
         nextInFocus: o2
         validator: RegExpValidator { regExp: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/ }
@@ -55,6 +55,8 @@ Rectangle {
         y: 140
         anchors.horizontalCenter: parent.horizontalCenter
         textColor: "white"
+        text: oEditModel.name
+        onTextChanged: oEditModel.name = text
         dummyText: "FIRSTNAME"
         nextInFocus: o3
     }
@@ -63,6 +65,8 @@ Rectangle {
         y: 200
         anchors.horizontalCenter: parent.horizontalCenter
         textColor: "white"
+        text: oEditModel.lastname
+        onTextChanged: oEditModel.lastname = text
         dummyText: "LASTNAME"
         nextInFocus: o4
     }
@@ -71,14 +75,18 @@ Rectangle {
         y: 260
         anchors.horizontalCenter: parent.horizontalCenter
         textColor: "white"
+        text: oEditModel.password
+        onTextChanged: oEditModel.password = text
         dummyText: "PASSWORD"
-        nextInFocus: o1
+        nextInFocus: o5
     }
     InputBox {
         id: o5
         y: 320
         anchors.horizontalCenter: parent.horizontalCenter
         textColor: "white"
+        text: oEditModel.password2
+        onTextChanged: oEditModel.password2 = text
         dummyText: "RE-ENTER PASSWORD"
         nextInFocus: o1
     }
@@ -107,7 +115,19 @@ Rectangle {
             color: oSignIn.down ? "#ece7d3" : "#ffbe1c"
             radius: 5
         }
-        onClicked: { exit(); }
+        onClicked: { if(oEditModel.commit()) exit(); }
     }
 
+    CUserData {
+        id: oEditModel
+        onShowErrors: {
+            errorsMessageBox.message = errors.join("\n");
+            errorsMessageBox.vShow(oForm);
+        }
+    }
+
+    MessageBox {
+        id: errorsMessageBox
+        title: "Error"
+    }
 }

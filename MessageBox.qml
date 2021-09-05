@@ -40,16 +40,17 @@ PopupBase {
         Text {
             x: 10
             y: 100
-//            anchors.horizontalCenter: parent.horizontalCenter
-//            anchors.bottom: oButton.top
-//            anchors.bottomMargin: 10
-
-//            anchors.centerIn: parent
-//            anchors.fill: parent
             text: messageBox.message
             wrapMode: Text.Wrap
             color: "white"
             font.pixelSize: 20
+
+            //            anchors.horizontalCenter: parent.horizontalCenter
+            //            anchors.bottom: oButton.top
+            //            anchors.bottomMargin: 10
+
+            //            anchors.centerIn: parent
+            //            anchors.fill: parent
         }
     }
 }

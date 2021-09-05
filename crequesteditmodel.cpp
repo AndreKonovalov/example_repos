@@ -23,11 +23,11 @@ bool CRequestEditModel::commit() {
     QStringList errors;
     qDebug() << "commit" << m_email << m_name << m_subject << m_text;
     if(m_email.isEmpty())
-        errors << tr("Email must be set.");
+        errors << tr("Email must be set");
     if(m_name.isEmpty())
-        errors << tr("Name must be set.");
+        errors << tr("Name must be set");
     if(m_subject.isEmpty())
-        errors << tr("Subject must be set.");
+        errors << tr("Subject must be set");
     if (!errors.empty())
     {
         emit showErrors(errors);

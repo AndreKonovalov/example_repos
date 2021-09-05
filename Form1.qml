@@ -15,7 +15,7 @@ Item {
     }
     SignIn {
         id: oSignIn
-        onExit: { console.log('si: ' + o1text + ' ' + o3text); oView.state = "appsView"; }
+        onExit: oView.state = "appsView"
     }
     SignUp {
         id: oSignUp
